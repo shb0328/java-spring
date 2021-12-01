@@ -8,6 +8,7 @@
 *.bin
 *.bat
 *.lock
+*/build/*
 
 # User-specific stuff
 .idea/**/workspace.xml

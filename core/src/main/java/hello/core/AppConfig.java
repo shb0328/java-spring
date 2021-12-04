@@ -14,25 +14,28 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class AppConfig {
-    //중복을 제거하고 역할에 대한 구현이 한눈에 보이도록 수정
 
     @Bean
     public MemberRepository memberRepository() {
+        System.out.println("*** call AppConfig.memberRepository");
         return new MemoryMemberRepository();
     }
 
     @Bean
     public DiscountPolicy discountPolicy() {
+        System.out.println("*** call AppConfig.discountPolicy");
         return new RateDiscountPolicy();
     }
 
     @Bean
     public MemberService memberService() {
+        System.out.println("*** call AppConfig.memberService");
         return new MemberServiceImpl(memberRepository());
     }
 
     @Bean
     public OrderService orderService() {
+        System.out.println("*** call AppConfig.orderService");
         return new OrderServiceImpl(memberRepository(), discountPolicy());
     }
 }

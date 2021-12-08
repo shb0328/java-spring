@@ -13,4 +13,8 @@ import org.springframework.context.annotation.FilterType;
 )
 public class AutoAppConfig {
     //@Bean 클래스가 없다.
+
+    // 필드 주입을 사용해도 되는 경우 2) Configuration (not recommended)
+//    @Autowired private OrderService orderService;
+
 }

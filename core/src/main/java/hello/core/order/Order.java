@@ -1,5 +1,9 @@
 package hello.core.order;
 
+//당연하지만,
+//스프링 빈이 아님 (@Bean, @Component)
+//스프링 컨테이너가 관리하는 객체가 아님
+//의존관계 주입 불가능
 public class Order {
     private Long memberId;
     private String itemName;

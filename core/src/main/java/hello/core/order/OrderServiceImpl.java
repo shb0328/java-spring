@@ -3,15 +3,21 @@ package hello.core.order;
 import hello.core.discount.DiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor //final field 에 대한 생성자를 자동으로 만들어준다.
 public class OrderServiceImpl implements OrderService{
+
+    private final MemberRepository memberRepository;
+    private final DiscountPolicy discountPolicy;
 
     //1.생성자 주입
     // 불변/필수 의존관계일 때.
     // 주로 field 에 final 선언해서 컴파일 타임에 오류를 체크할 수 있도록 한다.
+    /*
     private final MemberRepository memberRepository; //final field 는 선언문에서 즉시 할당하든, 생성자를 통해서 객체 생성 즉시 할당해야함.
     private final DiscountPolicy discountPolicy;
 
@@ -20,6 +26,8 @@ public class OrderServiceImpl implements OrderService{
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
     }
+     */
+    //-> Lombok @RequiredArgsConstructor 으로 대체 가능
 
     //2.수정자 주입
     //  불변/필수 의존관계가 아닐 때.

@@ -15,6 +15,15 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter'
+
+    //start to add lombok
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    testCompileOnly 'org.projectlombok:lombok'
+    testAnnotationProcessor 'org.projectlombok:lombok'
+    //end to add lombok
+
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 

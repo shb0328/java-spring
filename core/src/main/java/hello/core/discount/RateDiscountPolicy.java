@@ -1,12 +1,12 @@
 package hello.core.discount;
 
+import hello.core.annotation.MainDiscountPolicy;
 import hello.core.member.Grade;
 import hello.core.member.Member;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 @Component
-@Primary
+@MainDiscountPolicy //커스텀 애노테이션 사용으로 컴파일타임에 오류를 발견할 수 있다.
 public class RateDiscountPolicy implements DiscountPolicy{
 
     private int discountPercent = 10;

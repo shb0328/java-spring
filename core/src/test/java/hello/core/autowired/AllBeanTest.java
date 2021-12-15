@@ -2,11 +2,15 @@ package hello.core.autowired;
 
 import hello.core.AutoAppConfig;
 import hello.core.discount.DiscountPolicy;
+import hello.core.discount.FixDiscountPolicy;
+import hello.core.discount.RateDiscountPolicy;
 import hello.core.member.Grade;
 import hello.core.member.Member;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 import java.util.List;
 import java.util.Map;
@@ -17,7 +21,7 @@ public class AllBeanTest {
 
     @Test
     void findAllBean() {
-        AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(AutoAppConfig.class, DiscountService.class);
+        AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(DiscountPolicyConfig.class, DiscountService.class);
 
         DiscountService discountService = ac.getBean(DiscountService.class);
         Member member = new Member(1L, "userA", Grade.VIP);
@@ -48,4 +52,30 @@ public class AllBeanTest {
         }
     }
 
+    @Configuration
+    static class DiscountPolicyConfig {
+
+        @Bean
+        public DiscountPolicy rateDiscountPolicy() {
+            return new RateDiscountPolicy();
+        }
+
+        @Bean
+        public DiscountPolicy fixDiscountPolicy() {
+            return new FixDiscountPolicy();
+        }
+
+        @Bean
+        public DiscountPolicy testDiscountPolicy() {
+            return new TestDiscountPolicy();
+        }
+
+    }
+
+    static class TestDiscountPolicy implements DiscountPolicy {
+        @Override
+        public int discount(Member member, int price) {
+            return 9999;
+        }
+    }
 }
